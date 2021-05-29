@@ -1,1 +1,2 @@
-from webapp.views.photos import IndexPhotos
+from webapp.views.photos import *
+from webapp.views.albums import *

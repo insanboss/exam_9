@@ -7,14 +7,14 @@ from webapp.forms import PhotoForm
 from webapp.models import Photo, Album
 
 
-class IndexPhotos(ListView):
+class IndexPhotos(LoginRequiredMixin, ListView):
     template_name = 'photos/index_photos.html'
     context_object_name = 'photos'
     model = Photo
     queryset = Photo.objects.order_by('-created_at')
 
 
-class PhotoView(DetailView):
+class PhotoView(LoginRequiredMixin,DetailView):
     template_name = 'photos/photo_view.html'
     model = Photo
     context_object_name = 'photo'
@@ -43,19 +43,26 @@ class PhotoCreate(LoginRequiredMixin, CreateView):
         return reverse('photos:photo_view', kwargs={'pk': self.object.pk})
 
 
-class PhotoUpdate(LoginRequiredMixin, UpdateView):
+class PhotoUpdate(PermissionRequiredMixin, UpdateView):
     model = Photo
     template_name = 'photos/photo_update.html'
     form_class = PhotoForm
     context_object_name = 'photo'
+    permission_required = 'webapp.change_photo'
 
     def get_success_url(self):
         return reverse('photos:photo_view', kwargs={'pk': self.object.pk})
+
+    def has_permission(self):
+        return super().has_permission() or self.request.user == self.get_object().photos_author
 
 
 class PhotoDelete(LoginRequiredMixin, DeleteView):
     template_name = 'photos/photo_delete.html'
     model = Photo
     context_object_name = 'photo'
-
+    permission_required = 'webapp.delete_photo'
     success_url = reverse_lazy('photos:index_photos')
+
+    def has_permission(self):
+        return super().has_permission() or self.request.user == self.get_object().photos_author

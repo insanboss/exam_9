@@ -1,23 +1,5 @@
 [
 {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$150000$7V4M7LgRSMkX$Ky2662aDhhZTf77EMZqM6SnsU9AreaGa0bDUwgvC7yE=",
-    "last_login": "2021-05-29T06:09:25.884Z",
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "insanboss@gmail.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2021-05-29T06:09:09.933Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
   "model": "webapp.photo",
   "pk": 1,
   "fields": {
@@ -48,12 +30,99 @@
   "pk": 3,
   "fields": {
     "created_at": "2021-05-29T06:11:41.761Z",
-    "updated_at": "2021-05-29T06:11:41.761Z",
+    "updated_at": "2021-05-29T09:00:58.447Z",
     "photo": "photos/manager.png",
-    "sign": "Some name of photo 3",
+    "sign": "Some name of photo 3 upd",
+    "author_photo": 1,
+    "album": 1,
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-05-29T08:41:07.172Z",
+    "updated_at": "2021-05-29T08:59:28.383Z",
+    "photo": "photos/nature_UeZalAr.jpeg",
+    "sign": "Some name of photo",
+    "author_photo": 1,
+    "album": 1,
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 6,
+  "fields": {
+    "created_at": "2021-05-29T09:30:04.664Z",
+    "updated_at": "2021-05-29T09:30:04.672Z",
+    "photo": "photos/nature_vRHQXiQ.jpeg",
+    "sign": "test photo",
     "author_photo": 1,
     "album": null,
     "status": "public"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 7,
+  "fields": {
+    "created_at": "2021-05-29T09:30:14.813Z",
+    "updated_at": "2021-05-29T09:30:14.830Z",
+    "photo": "photos/nature_QlrmL7M.jpeg",
+    "sign": "test photo",
+    "author_photo": 1,
+    "album": null,
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-05-29T08:36:34.993Z",
+    "updated_at": "2021-05-29T08:36:34.993Z",
+    "name": "Some_album",
+    "description": "some text",
+    "author_album": 1,
+    "status": "private"
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-05-29T09:09:29.990Z",
+    "updated_at": "2021-05-29T09:09:29.998Z",
+    "name": "Some album 2",
+    "description": "askjd;lasjd;la",
+    "author_album": 1,
+    "status": "private"
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 4,
+  "fields": {
+    "created_at": "2021-05-29T09:27:51.960Z",
+    "updated_at": "2021-05-29T09:27:51.967Z",
+    "name": "test album",
+    "description": "asd",
+    "author_album": 1,
+    "status": "private"
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-05-29T09:34:57.894Z",
+    "updated_at": "2021-05-29T09:34:57.902Z",
+    "name": "\u0411\u0435\u043a\u0441\u0443\u043b\u0442\u0430\u043d",
+    "description": "\u0444\u044b\u0432\u0444\u044b\u0432",
+    "author_album": 1,
+    "status": "private"
   }
 }
 ]

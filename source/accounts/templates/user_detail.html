@@ -35,7 +35,7 @@
     {% endfor %}
 
 <div>Фото этого пользователя</div>
-
+{% if user.is_authenticated %}
 {% for photo in photos %}
             <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
               <div class="card-header">
@@ -53,6 +53,6 @@
             </div>
         {% endfor %}
 
-
+{% endif %}
 
 {% endblock %}

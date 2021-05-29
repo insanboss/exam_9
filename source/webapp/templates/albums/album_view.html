@@ -2,7 +2,12 @@
 
 
 {% block menu %}
+    {% if perms.webapp.delete_album and user.is_autheticated %}
     <li><a href="{% url 'photos:album_delete' album.id %}">Delete album</a></li>
+    {% endif %}
+    {% if perms.webapp.change_album and user.is_autheticated %}
+    <li><a href="{% url 'photos:album_update' album.id %}">Album update</a></li>
+    {% endif %}
 {% endblock menu %}
 
 {% block title %}{{ album.name }}{% endblock %}
@@ -13,7 +18,7 @@
 
 
 
-
+{% if user.is_authenticated %}
 <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
               <div class="card-header">
 
@@ -38,5 +43,6 @@
                 </div>
                 {% endfor %}
             </div>
+    {% endif %}
 {% endblock %}
 

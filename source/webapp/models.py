@@ -45,7 +45,7 @@ class Album(BaseModel):
     status = models.CharField(max_length=50, null=False,
                               blank=False,
                               choices=status_choices,
-                              default='new', verbose_name='статус')
+                              default='public', verbose_name='статус')
 
     def __str__(self):
         return "name album: {}. id album: {}".format(self.name, self.id)

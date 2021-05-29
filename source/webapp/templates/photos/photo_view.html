@@ -2,10 +2,15 @@
 
 
 {% block menu %}
-
+    {% if user.is_authenticated %}
     <li><a href="{% url 'photos:photo_add' %}">Add Photo</a></li>
+    {% endif %}
+    {% if perms.webapp.change_photo and user.is_autheticated %}
     <li><a href="{% url 'photos:photo_update' photo.id %}">Photo update</a></li>
+    {% endif %}
+    {% if perms.webapp.delete_photo and user.is_autheticated %}
     <li><a href="{% url 'photos:photo_delete' photo.id %}">Delete photo</a></li>
+    {% endif %}
 {% endblock menu %}
 
 {% block title %}{{ photo.sign }}{% endblock %}
