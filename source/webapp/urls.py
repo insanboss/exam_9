@@ -4,8 +4,14 @@ from webapp.views import IndexPhotos
 from webapp.views.albums import AlbumView, AlbumCreate, AlbumDelete, AlbumUpdate
 from webapp.views.favorites import AddPhoto, RemovePhoto, AddAlbum, RemoveAlbum
 from webapp.views.photos import PhotoView, PhotoCreate, PhotoUpdate, PhotoDelete
+from rest_framework import routers
+from webapp import views
+
 
 app_name = 'photos'
+
+router = routers.DefaultRouter()
+router.register(r'photos', views.PhotoViewSet)
 
 
 favorites_urls = [
@@ -26,4 +32,6 @@ urlpatterns = [
     path('album/<int:pk>/delete/', AlbumDelete.as_view(), name='album_delete'),
     path('album/<int:pk>/update/', AlbumUpdate.as_view(), name='album_update'),
     path('favorites/', include(favorites_urls)),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
