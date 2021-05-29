@@ -33,8 +33,10 @@ class UserDetailView(DetailView):
     context_object_name = 'user_obj'
 
     def get_context_data(self, **kwargs):
-        reviews = self.get_object().reviews.all()
-        kwargs['reviews'] = reviews
+        photos = self.get_object().photos_author.all()
+        kwargs['photos'] = photos
+        albums = self.get_object().album_author.all()
+        kwargs['albums'] = albums
         return super().get_context_data(**kwargs)
 
 

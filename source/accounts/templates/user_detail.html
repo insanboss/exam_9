@@ -18,7 +18,40 @@
     <p>Фамилия: {{ user_obj.last_name }}</p>
     <p>Почта: {{ user_obj.email }}</p>
 
+    <div>Альбомы этого пользователя</div>
 
+    {% for album in albums %}
+    <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
+              <div class="card-header">
+
+                  <span>Название альбома: {{ album.name }}</span>
+                  <div> Автор: {{ album.author_album }}</div>
+                  <div> Дата: {{ album.created_at }}</div>
+                  <div>Описание: {{ album.description }}</div>
+
+
+              </div>
+    </div>
+    {% endfor %}
+
+<div>Фото этого пользователя</div>
+
+{% for photo in photos %}
+            <div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
+              <div class="card-header">
+
+                  <span>Подпись фото: <a href="{% url 'photos:photo_view' photo.pk %}">{{ photo.sign }}</a></span>
+                  <div> Автор: {{ photo.author_photo }}</div>
+                  <div> Дата: {{ photo.created_at }}</div>
+
+
+              </div>
+              <div class="card-body text-dark">
+                <h5 class="card-title"></h5>
+                    <img class="avatar" src="{{ photo.photo.url }}" width="250" height="250" alt="photos">
+              </div>
+            </div>
+        {% endfor %}
 
 
 
