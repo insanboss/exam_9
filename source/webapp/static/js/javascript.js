@@ -1,51 +1,46 @@
-
-
-
-async function makeRequest(url, method='GET') {
-        let response = await fetch(url, {method});
-            if (response.ok) {  // нормальный ответ
-                let resp = await response.json();
-            return resp
-            }
-            else {            // ошибка
-            let error = new Error(response.statusText);
-            error.response = response;
-            throw error;
+const BASE_URL = 'http://localhost:8003'
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
         }
+    }
+    return cookieValue;
+}
 
-        addPhoto = async (event)=>{
-            event.preventDefault()
-            let currentTarget = event.currentTarget
-            let current_url = currentTarget.href
-            try{
-                 let result = await makeRequest(current_url)
-                currentTarget.innerHTML = '<i class="fas fa-heart"></i>'
-                currentTarget.setAttribute('href', current_url.replace('add_photo', "remove_photo"))
-                currentTarget.onclick = removePhoto
-                let id = currentTarget.dataset.counter
-                let counter = document.getElementById(id)
-                counter.innerText = result
-            }
-            catch (error){
-                console.log(error);
-            }
-        }
+let url = BASE_URL+'/photos/'
+let button = document.getElementsByName('favorite_button')
+async function makeRequest(url, method='GET', body) {
+    let headers={
+        'X-CSRFToken': getCookie('csrftoken')
+    }
+    let response;
+    if(method === 'GET'){
+        response = await fetch(url, {method})
+    }
+    else{
+        response = await fetch(url, {method, headers:headers, body:body});
+    }
 
-        removePhoto = async (event) => {
-            event.preventDefault()
-            let currentTarget = event.currentTarget
-            let current_url = currentTarget.href
-            try {
-                let result = await makeRequest(current_url)
-                currentTarget.innerHTML = '<i class="far fa-heart"></i>'
-                currentTarget.setAttribute('href', current_url.replace('remove_photo', 'add_photo'))
-                currentTarget.onclick = addPhoto
-                let id = currentTarget.dataset.counter
-                let counter = document.getElementById(id)
-                counter.innerText = result
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
+    if (response.ok) {  // нормальный ответ
+        return await response.json();
+    } else {            // ошибка
+        let error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+    }
+}
+button[0].onclick = async () =>{
+    let res = await makeRequest(url)
+    console.log(res)
+
+
+}
+

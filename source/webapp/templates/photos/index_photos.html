@@ -23,12 +23,14 @@
                   <div> Автор: {{ photo.author_photo }}</div>
                   <div> Дата: {{ photo.created_at }}</div>
 
+    <input type=button value="Add_to_favorite" name="favorite_button" data-url="#">
+
 
     <div> Добавить/убрать из избранного </div>
     {% if photo.pk in favorite_photos and user.is_authenticated %}
-        <p><a data-counter="counter{{ photo.pk }}" onclick="removePhoto(event)" href="{% url "photos:remove_photo" photo.id %}"><i class="fas fa-heart"></i></a></p>
+        <p><a id="remove_favorite" data-counter="counter{{ photo.pk }}" onclick="removePhoto(event)" href="{% url "photos:remove_photo" photo.id %}"><i class="fas fa-heart"></i></a></p>
     {% else %}
-        <p><a data-counter="counter{{ photo.pk }}" onclick="addPhoto(event)" href="{% url "photos:add_photo"  photo.id %}"><i class="far fa-heart"></i></a></p>
+        <p><a id="add_favorite" data-counter="counter{{ photo.pk }}" onclick="addPhoto(event)" href="{% url "photos:add_photo"  photo.id %}"><i class="far fa-heart"></i></a></p>
     {% endif %}
     <p id="counter{{ photo.pk }}">{{ photo.PhotoUser.count }}</p>
 
