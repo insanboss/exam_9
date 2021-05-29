@@ -1,0 +1,59 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$7V4M7LgRSMkX$Ky2662aDhhZTf77EMZqM6SnsU9AreaGa0bDUwgvC7yE=",
+    "last_login": "2021-05-29T06:09:25.884Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "insanboss@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-05-29T06:09:09.933Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-05-29T06:11:19.652Z",
+    "updated_at": "2021-05-29T06:11:19.652Z",
+    "photo": "photos/admin.jpeg",
+    "sign": "Some name of photo",
+    "author_photo": 1,
+    "album": null,
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-05-29T06:11:31.631Z",
+    "updated_at": "2021-05-29T06:11:31.631Z",
+    "photo": "photos/lead.jpeg",
+    "sign": "Some name of photo 2",
+    "author_photo": 1,
+    "album": null,
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-05-29T06:11:41.761Z",
+    "updated_at": "2021-05-29T06:11:41.761Z",
+    "photo": "photos/manager.png",
+    "sign": "Some name of photo 3",
+    "author_photo": 1,
+    "album": null,
+    "status": "public"
+  }
+}
+]
