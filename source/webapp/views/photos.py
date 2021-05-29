@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import PhotoForm
-from webapp.models import Photo, Album
+from webapp.models import Photo, Album, PhotoUser
 
 
 class IndexPhotos(LoginRequiredMixin, ListView):
@@ -13,11 +13,31 @@ class IndexPhotos(LoginRequiredMixin, ListView):
     model = Photo
     queryset = Photo.objects.order_by('-created_at')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        photos_id = []
+        for photo_id in PhotoUser.objects.filter(user=user):
+            photos_id.append(photo_id.photo.pk)
+        context['favorite_photos'] = photos_id
+
+        return context
+
 
 class PhotoView(LoginRequiredMixin,DetailView):
     template_name = 'photos/photo_view.html'
     model = Photo
     context_object_name = 'photo'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        photos_id = []
+        for photo_id in PhotoUser.objects.filter(user=user):
+            photos_id.append(photo_id.photo.pk)
+        context['favorite_photos'] = photos_id
+
+        return context
 
 
 class PhotoCreate(LoginRequiredMixin, CreateView):

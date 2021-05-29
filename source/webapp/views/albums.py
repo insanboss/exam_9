@@ -3,13 +3,23 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, DeleteView, UpdateView
 
 from webapp.forms import AlbumForm
-from webapp.models import Album
+from webapp.models import Album, AlbumUser
 
 
 class AlbumView(LoginRequiredMixin, DeleteView):
     template_name = 'albums/album_view.html'
     model = Album
     context_object_name = 'album'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        albums_id = []
+        for album_id in AlbumUser.objects.filter(user=user):
+            albums_id.append(album_id.album.pk)
+        context['favorite_albums'] = albums_id
+
+        return context
 
 
 class AlbumCreate(LoginRequiredMixin, CreateView):
