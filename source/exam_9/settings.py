@@ -120,9 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'products:index'
-LOGOUT_REDIRECT_URL = 'products:index'
-LOGIN_URL = 'products:index'
+LOGIN_REDIRECT_URL = 'photos:index_photos'
+LOGOUT_REDIRECT_URL = 'photos:index_photos'
+LOGIN_URL = 'photos:index_photos'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 

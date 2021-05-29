@@ -23,7 +23,7 @@ class RegisterView(CreateView):
         if not next_url:
             next_url = self.request.POST.get('next')
         if not next_url:
-            next_url = reverse('products:index')
+            next_url = reverse('photos:index_photos')
         return next_url
 
 

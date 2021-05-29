@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block menu %}
+
+{% endblock menu %}
+
+{% block title %}{{ album.name }}{% endblock %}
+
+
+
+<{% block content %}
+
+
+
+
+<div class="guest_card card border-dark mb-5" style="max-width: 18rem;">
+              <div class="card-header">
+
+                  <span>Название альбома: {{ album.name }}</span>
+                  <div> Автор: {{ album.author_album }}</div>
+                  <div> Дата: {{ album.created_at }}</div>
+                  <div>Описание: {{ album.description }}</div>
+
+
+              </div>
+
+            </div>
+{% endblock %}
+
