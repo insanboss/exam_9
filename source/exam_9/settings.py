@@ -40,9 +40,10 @@ INSTALLED_APPS = [
 
     # custom_apps
     'webapp',
+    'accounts',
 
     # lib apps
-
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
