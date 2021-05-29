@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Delete Photo{% endblock %}
+{% block menu %}
+    <li><a href="{% url 'photos:album_view' album.id %}">View</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Are you sure want to delete album "{{ album.name }}"?</h1>
+    <form method="POST" action="{% url "photos:album_delete" album.id %}" class="text-center">
+        {% csrf_token %}
+        <p><input type="submit" value="Confirm"></p>
+        <p><a href="{% url "photos:album_view" album.id %}">Cancel</a></p>
+    </form>
+{% endblock %}

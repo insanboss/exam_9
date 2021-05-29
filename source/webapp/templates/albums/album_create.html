@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+{% block title %}Create album{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Create photo</h1>
+        <form method="post" action="{% url "photos:album_create" %} " >
+            {% include "partial/form.html" with button_text="Create" %}
+        </form>
+    </div>
+{% endblock %}
+

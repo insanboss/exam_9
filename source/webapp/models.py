@@ -47,6 +47,9 @@ class Album(BaseModel):
                               choices=status_choices,
                               default='new', verbose_name='статус')
 
+    def __str__(self):
+        return "name album: {}. id album: {}".format(self.name, self.id)
+
 
 class AlbumUser(BaseModel):
     album = models.ForeignKey("webapp.Album", on_delete=models.CASCADE, related_name="AlbumUser")

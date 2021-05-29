@@ -32,7 +32,9 @@ class PhotoCreate(LoginRequiredMixin, CreateView):
         )
 
     def form_valid(self, form):
+        album = get_object_or_404(Album, pk=self.kwargs.get('pk'))
         photo = form.save(commit=False)
+        photo.album = album
         photo.author_photo = self.request.user
         photo.save()
         return super().form_valid(form)
